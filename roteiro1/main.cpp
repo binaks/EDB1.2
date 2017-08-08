@@ -31,6 +31,7 @@ void testAdd()
 	assert( add(1, 1) == 2 );
 	assert( add(0, 0) == 0);
 	assert( add(2, 3) == 5); 
+	assert( add(2, 17) == 19);
 
 	std::cout << "All add-tests passed!\n";
 }

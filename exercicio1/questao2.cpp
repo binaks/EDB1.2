@@ -2,27 +2,27 @@
 
 using namespace std;
 
-string toBinary (int n, string binary);
+void toBinary (int n);
 
 int main () {
 	int n;
-	string binary = "";
 
 	cout << "Enter a natural number: " << endl;
 	cin >> n;
 
-	cout << toBinary (n, binary) << endl;
+	toBinary (n);
+	cout << endl;
 }
 
-string toBinary (int n, string binary) {
-	if (n == 0) {
-		return binary;
-	} else {
+void toBinary (int n) {
+	if (n != 0) {
+		toBinary (n / 2);
+
 		if (n % 2 == 0) {
-			binary += "0";
+			cout << "0";
 		} else {
-			binary += "1";
+			cout << "1";
 		}
-		return toBinary (n / 2, binary);
+
 	}
 }

@@ -17,7 +17,7 @@ int main () {
 		cin >> v[i];
 	}
 	
-	cout << "A soma dos elementos do vetor é " << sumArray (v, n - 1, 0) << "." << endl;
+	cout << "A soma dos elementos do vetor é " << sumArray (v, n - 1, v[0]) << "." << endl;
 
 	delete[] v;
 }
@@ -26,7 +26,6 @@ int sumArray (int *v, int n, int sum) {
 	if (n == 0) {
 		return sum;
 	} else {
-		sum += v[n];
-		return sumArray (v, --n, sum);
+		return sumArray (v, --n, sum + v[n]);
 	}
 }

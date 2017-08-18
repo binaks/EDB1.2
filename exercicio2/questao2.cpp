@@ -29,8 +29,9 @@ int main () {
 	cout << "Here's your sorted array: " << endl;
 	cout << "v = [";
 	for (int i = 0; i < n; i++) {
+		cout << v[i];
 		if (i != (n - 1)) {
-			cout << v[i] << " ";
+			cout << " ";
 		}
 	}
 	cout << "]" << endl;
@@ -44,7 +45,7 @@ int main () {
 	
 	if (pos >= 0) {
 		cout << k << " first appears in the position " << pos  << " of your array." << endl;
-		cout << k << " appears in your array " << (pos2 - pos) << " times." << endl;
+		cout << k << " appears in your array " << (pos2 - pos + 1) << " times." << endl;
 	} else {
 		cout << k << " is not an element of your array." << endl;
 	}

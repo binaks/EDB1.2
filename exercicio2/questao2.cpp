@@ -6,10 +6,13 @@ void quickSort (int *v, int left, int right);
 
 int leftBinarySearch (int *v, int first, int last, int x);
 
+int rightBinarySearch (int *v, int first, int last, int x); 
+
 int main () {
 	int n;
 	int k;
 	int pos;
+	int pos2;
 
 	cout << "Enter the size of the array: " << endl;
 	cin >> n;
@@ -26,7 +29,9 @@ int main () {
 	cout << "Here's your sorted array: " << endl;
 	cout << "v = [";
 	for (int i = 0; i < n; i++) {
-		cout << v[i] << " ";
+		if (i != (n - 1)) {
+			cout << v[i] << " ";
+		}
 	}
 	cout << "]" << endl;
 
@@ -35,8 +40,11 @@ int main () {
 	
 	pos = leftBinarySearch (v, 0, n - 1, k);
 
+	pos2 = rightBinarySearch (v, 0, n - 1, k);
+	
 	if (pos >= 0) {
-		cout << k << " appears first in the position " << pos  << " of your array." << endl;
+		cout << k << " first appears in the position " << pos  << " of your array." << endl;
+		cout << k << " appears in your array " << (pos2 - pos) << " times." << endl;
 	} else {
 		cout << k << " is not an element of your array." << endl;
 	}
@@ -85,6 +93,25 @@ int leftBinarySearch (int *v, int first, int last, int x) {
 			return leftBinarySearch (v, first, k - 1, x);
 		} else {
 			return leftBinarySearch (v, k + 1, last, x);
+		}
+	}
+}
+
+int rightBinarySearch (int *v, int first, int last, int x) {
+	if (last < first) {
+		return -1;
+	} else {
+		int k = (first + last) / 2;
+		if (v[k] == x) {
+			if (k != 0 || v[k + 1] == x) {
+				return rightBinarySearch (v, k + 1, last, x);
+			} else {
+				return k;
+			}
+		} else if (v[k] > x) {
+			return rightBinarySearch (v, first, k - 1, x);
+		} else {
+			return rightBinarySearch (v, k + 1, last, x);
 		}
 	}
 }

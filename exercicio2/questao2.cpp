@@ -44,7 +44,8 @@ int main () {
 	pos2 = rightBinarySearch (v, 0, n - 1, k);
 	
 	if (pos >= 0) {
-		cout << k << " first appears in the position " << pos  << " of your array." << endl;
+		cout << k << " first appears in the position " << pos << " of your array." << endl;
+		cout << k << " last appears in the position " << pos2 << " of your array." << endl;
 		cout << k << " appears in your array " << (pos2 - pos + 1) << " times." << endl;
 	} else {
 		cout << k << " is not an element of your array." << endl;
@@ -85,7 +86,7 @@ int leftBinarySearch (int *v, int first, int last, int x) {
 	} else {
 		int k = (first + last) / 2;
 		if (v[k] == x) {
-			if (k != 0 || v[k - 1] == x) {
+			if (k != 0 && v[k - 1] == x) {
 				return leftBinarySearch (v, first, k - 1, x);
 			} else {
 				return k;
@@ -104,7 +105,7 @@ int rightBinarySearch (int *v, int first, int last, int x) {
 	} else {
 		int k = (first + last) / 2;
 		if (v[k] == x) {
-			if (k != 0 || v[k + 1] == x) {
+			if (k != last && v[k + 1] == x) {
 				return rightBinarySearch (v, k + 1, last, x);
 			} else {
 				return k;

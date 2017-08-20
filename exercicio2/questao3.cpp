@@ -43,6 +43,8 @@ int main () {
 	} else {
 		cout << k << " is in the position " << pos << " of your array." << endl;
 	}
+
+	delete [] v;
 }
 
 void quickSort (int *v, int left, int right) {

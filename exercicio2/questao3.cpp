@@ -6,6 +6,8 @@ void quickSort (int *v, int left, int right);
 
 int ternarySearch (int *v, int k, int inicio, int fim);
  
+int iTernarySearch (int *v, int k, int inicio, int fim); 
+
 int main () {
 	int n;
 	int k;
@@ -36,7 +38,7 @@ int main () {
 	cout << "Enter a number: " << endl;
 	cin >> k;
 
-	pos = ternarySearch (v, k, 0, n - 1);
+	pos = iTernarySearch (v, k, 0, n - 1);
 
 	if (pos < 0) {
 		cout << k << " is not an element of your array." << endl;
@@ -95,4 +97,27 @@ int ternarySearch (int *v, int k, int inicio, int fim) {
 			return ternarySearch (v, k, m1 + 1, m2 - 1);
 		}
 	}
+}
+
+int iTernarySearch (int *v, int k, int inicio, int fim) {
+	while (inicio < fim) {
+		int mid = (inicio + fim) / 2;
+		int m1 = (inicio + mid) / 2;
+		int m2 = (mid + fim) / 2;
+
+		if (v[m1] == k) {
+			return m1;
+		} else if (v[m2] == k) {
+			return m2;
+		} else if (k < v[m1]) {
+			fim = m1 - 1;
+		} else if (k > v[m2]) {
+			inicio = m2 + 1;
+		} else {
+			inicio = m2 - 1;
+			fim = m1 + 1;
+		}
+	}
+
+	return -1;
 }

@@ -100,7 +100,7 @@ int ternarySearch (int *v, int k, int inicio, int fim) {
 }
 
 int iTernarySearch (int *v, int k, int inicio, int fim) {
-	while (inicio < fim) {
+	while (inicio <= fim) {
 		int mid = (inicio + fim) / 2;
 		int m1 = (inicio + mid) / 2;
 		int m2 = (mid + fim) / 2;

@@ -90,7 +90,7 @@ int ternarySearch (int *v, int k, int inicio, int fim) {
 		} else if (k > v[m2]) {
 			return ternarySearch (v, k, m2 + 1, fim);
 		} else {
-			return ternarySearch (v, k, m1 + 1, m2 + 1);
+			return ternarySearch (v, k, m1 + 1, m2 - 1);
 		}
 	}
 }

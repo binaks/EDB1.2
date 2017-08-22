@@ -6,6 +6,8 @@ bool isBitonic (int *v, int n);
 
 bool isCrescent (int *v, int n); 
 
+int findPeak (int *v, int first, int last);
+
 int main () {
 	int n;
 
@@ -33,6 +35,7 @@ int main () {
 
 	if (isBitonic(v, n - 1)) {
 		cout << "Your array is bitonic! :)" << endl;
+		cout << "Here's its peak: " << findPeak (v, 0, n - 1) << "." << endl;
 	} else {
 		cout << "Your array is *not* bitonic :(" << endl;
 	}
@@ -60,4 +63,16 @@ bool isCrescent (int *v, int n) {
 	} else { 
 		return isCrescent (v, n - 1);
 	}
+}
+
+int findPeak (int *v, int first, int last) {
+		int k = (first + last) / 2;
+		
+		if (v[k] > v[k + 1] && v[k] > v[k - 1]) {
+			return v[k];
+		} else if (v[k] > v[k + 1] && v[k] < v[k - 1]) {
+			return findPeak (v, first, v[k - 1]);
+		} else if (v[k] < v[k + 1] && v[k] > v[k - 1]) {
+			return findPeak (v, v [k - 1], last);
+		}
 }

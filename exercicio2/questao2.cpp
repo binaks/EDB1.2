@@ -58,10 +58,10 @@ void quickSort (int *v, int left, int right) {
 	int pivot = v[(left + right) / 2];
 
 	while (i <= j) {
-		while (v[i] < pivot) {
+		while (v[i] < pivot && i <= j) {
 			i++;
 		}
-		while (v[j] > pivot) {
+		while (v[j] > pivot && i <= j) {
 			j--;
 		}
 		if (i <= j) {

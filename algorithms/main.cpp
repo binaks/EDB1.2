@@ -20,7 +20,7 @@ int main () {
 		cin >> v[i];
 	}
 
-	insertion_sort (v, 0, n - 1);
+	bubble_sort (v, 0, n - 1);
 
 	cout << "Here's your sorted array: " << endl;
 	cout << "v = [";

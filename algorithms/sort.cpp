@@ -87,3 +87,13 @@ void insertion_sort (int *v, int first, int last) {
 		key = v[i + 1];
 	}
 }
+
+void bubble_sort (int *v, int first, int last) {
+	for (int i = first; i <= last; i++) {
+		for (int j = first; j <= last; j++) {
+			if (v[j] > v[j + 1]) {
+				swap (v[j], v[j + 1]);
+			}
+		}
+	}
+}

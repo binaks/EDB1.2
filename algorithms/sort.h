@@ -11,4 +11,6 @@ void selection_sort_it (int *v, int first, int last);
 
 void insertion_sort (int *v, int first, int last);
 
+void bubble_sort (int *v, int first, int last);
+
 #endif

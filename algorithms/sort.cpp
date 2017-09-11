@@ -1,4 +1,8 @@
 #include "sort.h"
+#include <iostream>
+
+using namespace std;
+
 
 void quickSort (int *v, int left, int right) {
 	int i = left, j = right;
@@ -99,9 +103,61 @@ void bubble_sort (int *v, int first, int last) {
 }
 
 void merge_sort (int *v, int first, int last) {
-	int 
+	int m = (first + last) / 2;
+
+	if (first < last) {	
+		merge_sort (v, first, m);
+		merge_sort (v, m + 1, last);
+		merge (v, first, last, m);
+	}
 }
 
 void merge (int *v, int first, int last, int m) {
+	int size1 = m - first + 1;
+	int size2 = last - m;
 
+	int *left = new int [size1]; 
+	int *right = new int [size2];
+
+	for (int i = 0; i < size1; i++) {
+		left[i] = v[first + i];
+	}
+	
+	for (int i = 0; i < size2; i++) {
+		right[i] = v[m + 1 + i];
+	}
+
+	int i = 0;
+	int j = 0;
+	int k = first;
+
+	while (i <= m && j <= last) {
+		if (left[i] <= right[j]) {
+			v[k] = left[i];
+			k++;
+			i++;
+		} else {
+			v[k] = right[j];
+			k++;
+			j++;
+		}
+	}
+
+	while (i <= m) {
+		v[k] = left[i];
+		k++;
+		i++;
+	}
+
+	while (j <= last) {
+		v[k] = right[j];
+		k++;
+		j++;
+	}
+
+	delete [] left;
+	delete [] right; 
+
+	left = nullptr;
+	right = nullptr;
 }

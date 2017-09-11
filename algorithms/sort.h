@@ -13,4 +13,8 @@ void insertion_sort (int *v, int first, int last);
 
 void bubble_sort (int *v, int first, int last);
 
+void merge_sort (int *v, int first, int last);
+
+void merge (int *v, int first, int last, int m);
+
 #endif

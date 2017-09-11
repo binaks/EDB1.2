@@ -1,8 +1,4 @@
 #include "sort.h"
-#include <iostream>
-
-using namespace std;
-
 
 void quickSort (int *v, int left, int right) {
 	int i = left, j = right;
@@ -112,16 +108,16 @@ void merge_sort (int *v, int first, int last) {
 	}
 }
 
-void merge (int *v, int first, int last, int m) {
+void merge_doesntwork (int *v, int first, int last, int m) {
 	int size1 = m - first + 1;
 	int size2 = last - m;
-
-	int *left = new int [size1]; 
+	
+	int *left = new int [size1];
 	int *right = new int [size2];
 
 	for (int i = 0; i < size1; i++) {
 		left[i] = v[first + i];
-	}
+	}	
 	
 	for (int i = 0; i < size2; i++) {
 		right[i] = v[m + 1 + i];
@@ -131,8 +127,8 @@ void merge (int *v, int first, int last, int m) {
 	int j = 0;
 	int k = first;
 
-	while (i <= m && j <= last) {
-		if (left[i] <= right[j]) {
+	while (i <= m && j <= last && k <= last) {
+		if (left[i] < right[j]) {
 			v[k] = left[i];
 			k++;
 			i++;
@@ -143,21 +139,61 @@ void merge (int *v, int first, int last, int m) {
 		}
 	}
 
-	while (i <= m) {
+	while (i <= m && k <= last) {
 		v[k] = left[i];
 		k++;
 		i++;
 	}
 
-	while (j <= last) {
+	while (j <= last & k <= last) {
 		v[k] = right[j];
 		k++;
 		j++;
 	}
 
 	delete [] left;
-	delete [] right; 
+	delete [] right;
 
 	left = nullptr;
 	right = nullptr;
+}
+
+void merge (int *v, int first, int last, int m) {
+	int size = last - first;
+	int* tmp = new int [size];
+
+	int i = first;
+	int j = m + 1;
+	int k = first;
+
+	while (i <= m && j <= last) {
+		if (v[i] <= v[j]) {
+			tmp[k] = v[i];
+			k++;
+			i++;
+		} else {
+			tmp[k] = v[j];
+			k++;
+			j++;
+		}
+	}
+	
+	while (i <= m) {
+		tmp[k] = v[i];
+		k++;
+		i++;
+	}
+
+	while (j <= last) {
+		tmp[k] = v[j];
+		k++;
+		j++;
+	}
+
+	for (k = first; k <= last; k++) {
+		v[k] = tmp[k];
+	}
+
+	delete [] tmp;
+	tmp = nullptr;
 }

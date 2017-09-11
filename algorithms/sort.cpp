@@ -36,30 +36,30 @@ inline void swap (int& x, int& y) {
 
 void selection_sort (int *v, int first, int last) {
 	if (last == first) return;
-	int least = first;
+	int lowest = first;
 
 	for (int i = first; i <= last; i++) {
-		if (v[least] >= v[i]) {
-			least = i;
+		if (v[lowest] >= v[i]) {
+			lowest = i;
 		}
 	}
 
-	swap (v[least], v[first]);
+	swap (v[lowest], v[first]);
 
 	return selection_sort(v, first + 1, last);
 }
 
 void selection_sort_it (int *v, int first, int last) {
-	int least = first;
+	int lowest = first;
 
 	while (first != last) {
 		for (int i = first; i <= last; i++) {
-			if (v[least] >= v[i]) {
-				least = i;
+			if (v[lowest] >= v[i]) {
+				lowest = i;
 			}
 		}
 
-		swap (v[least], v[first]);
+		swap (v[lowest], v[first]);
 
 		first++;
 	}
@@ -79,7 +79,7 @@ void insertion_sort (int *v, int first, int last) {
 // it makes the key element "walk" through the sorted sequence
 			swap (v[j + 1], v[j]);
 			j--;
-// it stops when j reaches -1 (the key element was the least) 
+// it stops when j reaches -1 (the key element was the lowest) 
 // or when the key is no longer larger than the previous element in the sorted sequence
 		}
 
@@ -90,10 +90,18 @@ void insertion_sort (int *v, int first, int last) {
 
 void bubble_sort (int *v, int first, int last) {
 	for (int i = first; i <= last; i++) {
-		for (int j = first; j <= last; j++) {
-			if (v[j] > v[j + 1]) {
+		for (int j = first; j <= last - i; j++) {
+			if (v[j] >  v[j + 1]) {
 				swap (v[j], v[j + 1]);
 			}
 		}
 	}
+}
+
+void merge_sort (int *v, int first, int last) {
+	int 
+}
+
+void merge (int *v, int first, int last, int m) {
+
 }

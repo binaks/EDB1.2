@@ -197,3 +197,37 @@ void merge (int *v, int first, int last, int m) {
 	delete [] tmp;
 	tmp = nullptr;
 }
+
+void quick_sort (int *v, int first, int last) {
+	if (first < last) {
+		int p = partition (v, first, last);
+
+		quick_sort (v, first, p - 1);
+		quick_sort (v, p + 1, last);
+	}
+}
+
+int partition (int *v, int first, int last) {
+	int pivot = v[last];
+
+	int i = first;
+	int j = last - 1;
+
+	while (i <= j) {
+		while (v[i] < pivot && i <= j) {
+			i++;
+		}
+
+		while (v[j] > pivot && i <= j) {
+			j--;
+		}
+
+		if (i <= j) {
+			swap (v[i], v[j]);
+		}
+	}
+	
+	swap (v[i], v[last]);
+	
+	return i;
+}

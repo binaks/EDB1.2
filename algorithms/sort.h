@@ -17,4 +17,8 @@ void merge_sort (int *v, int first, int last);
 
 void merge (int *v, int first, int last, int m);
 
+void quick_sort (int *v, int left, int right);
+
+int partition (int *v, int left, int right);
+
 #endif

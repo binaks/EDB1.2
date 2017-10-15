@@ -3,13 +3,31 @@
 #include "Node.h"
 #include "Sequence.h"
 
-int iMax (Sequence<int> *seq); 
-int rMax (Sequence<int> *seq, int count, int max, Node<int> *p); 
 int Max (Sequence<int> *seq); 
-int rSum (Sequence<int> *seq, int count, int sum, Node<int> *p); 
+int rMax (Sequence<int> *seq, int count, int max, Node<int> *p); 
+int iMax (Sequence<int> *seq); 
 int Sum (Sequence<int> *seq); 
-int rCount (Sequence<int> *seq, int n, int count, int total, Node<int> *p); 
+int rSum (Sequence<int> *seq, int count, int sum, Node<int> *p); 
 int CountMin (Sequence<int> *seq, int n); 
+int rCount (Sequence<int> *seq, int n, int count, int total, Node<int> *p); 
+
+int Max (Sequence<int> *seq) {
+	return rMax (seq, 0, (seq->getFirst())->getValue(), seq->getFirst());
+}
+
+int rMax (Sequence<int> *seq, int count, int max, Node<int> *p) {
+	if (count == seq->getQuantity()) {
+		return max;
+	}
+
+	p = p->getNext();
+
+	if (p->getValue() > max) {
+		max = p->getValue();
+	}
+
+	return rMax (seq, ++count, max, p);
+}
 
 int iMax (Sequence<int> *seq) {
 	int max = (seq->getFirst())->getValue();
@@ -27,22 +45,8 @@ int iMax (Sequence<int> *seq) {
 	return max;
 }
 
-int rMax (Sequence<int> *seq, int count, int max, Node<int> *p) {
-	if (count == seq->getQuantity()) {
-		return max;
-	}
-
-	p = p->getNext();
-
-	if (p->getValue() > max) {
-		max = p->getValue();
-	}
-
-	return rMax (seq, ++count, max, p);
-}
-
-int Max (Sequence<int> *seq) {
-	return rMax (seq, 0, (seq->getFirst())->getValue(), seq->getFirst());
+int Sum (Sequence<int> *seq) {
+	return rSum (seq, 0, (seq->getFirst())->getValue(), seq->getFirst());	
 }
 
 int rSum (Sequence<int> *seq, int count, int sum, Node<int> *p) {
@@ -57,8 +61,8 @@ int rSum (Sequence<int> *seq, int count, int sum, Node<int> *p) {
 	return rSum (seq, ++count, sum, p);
 }
 
-int Sum (Sequence<int> *seq) {
-	return rSum (seq, 0, (seq->getFirst())->getValue(), seq->getFirst());	
+int CountMin (Sequence<int> *seq, int n) {
+	return rCount (seq, n, 1, 0, seq->getFirst());
 }
 
 int rCount (Sequence<int> *seq, int n, int count, int total, Node<int> *p) {
@@ -71,10 +75,6 @@ int rCount (Sequence<int> *seq, int n, int count, int total, Node<int> *p) {
 	}
 
 	return rCount (seq, n, ++count, total, p->getNext());
-}
-
-int CountMin (Sequence<int> *seq, int n) {
-	return rCount (seq, n, 1, 0, seq->getFirst());
 }
 
 using namespace std;

@@ -9,9 +9,8 @@ private:
 public:
 	Node();
 	Node(T value);
-	Node(T value, Node* n);
 
-	Node* getNext();
+	Node<T>* getNext();
 	void setNext(Node* n); 
 
 	T getValue();
@@ -22,12 +21,6 @@ template <class T>
 Node<T>::Node(T value) {
 	content = value;
 	next = nullptr;
-}
-
-template <class T>
-Node<T>::Node(T value, Node* n) {
-	content = value;
-	next = n;
 }
 
 template <class T>

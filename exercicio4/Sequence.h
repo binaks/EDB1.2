@@ -49,7 +49,7 @@ int Sequence<T>::search (T element) {
 		return 1;
 	}
 
-	for (int i = 1; i < quantity; i++) {
+	for (int i = 1; i <= quantity; i++) {
 		p = p->getNext();
 
 		if (p->getValue() == element) {
@@ -74,7 +74,7 @@ void Sequence<T>::insertEnd (T element) {
 	}
 
 	p->setNext(newNode);
-	newNode->setNext(nullptr);
+	newNode->setNext(first);
 
 	quantity++;
 }
